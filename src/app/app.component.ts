@@ -1,3 +1,4 @@
+import { DeviceDetectionService } from './shared/services/device-detection.service';
 import { Component, HostListener } from '@angular/core';
 
 @Component({
@@ -18,7 +19,7 @@ export class AppComponent {
   @HostListener('window:resize', ['$event'])
 onResize(event) {
   this.width = window.innerWidth;
-  console.log(' width ' + this.width );
+//  console.log(' width ' + this.width );
   if (this.width < 758) {
     this.isMobileResolution = true;
  } else {
@@ -26,7 +27,7 @@ onResize(event) {
 }
 }
 
-constructor(){
+constructor(private deviceDetectionService : DeviceDetectionService){
   /*if (this.width < 758) {
   this.isMobileResolution = true;
 } else {
@@ -35,6 +36,6 @@ constructor(){
 
 }
 public getIsMobileResolution(): boolean {
-  return this.isMobileResolution;
+  return this.deviceDetectionService.getIsMobileResolution();
 }
 }
